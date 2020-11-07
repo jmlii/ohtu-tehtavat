@@ -2,23 +2,15 @@
 package ohtu.verkkokauppa;
 
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Kirjanpito implements KirjanpitoRP {
 
-// getInstance-metodi ja staattinen instance-muuttuja poistetaan:
-//    private static Kirjanpito instance;
-//    
-//    public static Kirjanpito getInstance() {
-//        if ( instance==null) {
-//            instance = new Kirjanpito();
-//        }
-//        
-//        return instance;
-//    }
-    
     private ArrayList<String> tapahtumat;
 
-// private-konstruktori muutetaan julkiseksi:
+    @Autowired
     public Kirjanpito() {
         tapahtumat = new ArrayList<String>();
     }

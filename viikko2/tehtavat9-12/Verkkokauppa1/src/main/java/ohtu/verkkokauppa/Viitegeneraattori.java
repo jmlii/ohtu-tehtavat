@@ -1,21 +1,14 @@
 package ohtu.verkkokauppa;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Viitegeneraattori implements ViitegeneraattoriRP {
 
-// getInstance-metodi ja staattinen instance-muuttuja poistetaan:
-//    private static Viitegeneraattori instanssi;
-//
-//    public static Viitegeneraattori getInstance() {
-//        if (instanssi == null) {
-//            instanssi = new Viitegeneraattori();
-//        }
-//
-//        return instanssi;
-//    }
-    
     private int seuraava;
     
-    // private-konstruktori muutetaan julkiseksi:
+    @Autowired
     public Viitegeneraattori(){
         seuraava = 1;    
     }

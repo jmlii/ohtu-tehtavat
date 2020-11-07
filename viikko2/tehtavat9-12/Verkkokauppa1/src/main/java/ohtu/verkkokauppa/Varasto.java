@@ -1,25 +1,16 @@
 package ohtu.verkkokauppa;
 
 import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Varasto implements VarastoRP {
 
-// getInstance-metodi ja staattinen instance-muuttuja poistetaan:
-//    private static Varasto instanssi;
-//
-//    public static Varasto getInstance() {
-//        if (instanssi == null) {
-//            instanssi = new Varasto();
-//        }
-//
-//        return instanssi;
-//    }
-    
-    //Muutetaan riippuvuus Kirjanpito-luokkaan riippuvuudeksi rajapintaan: 
     private KirjanpitoRP kirjanpito;
     private HashMap<Tuote, Integer> saldot;  
     
-    // private-konstruktori muutetaan julkiseksi, injektoidaaan kirjanpitorajapinta:    
+    @Autowired
     public Varasto(KirjanpitoRP kirjanpito) {
         this.kirjanpito = kirjanpito;
         saldot = new HashMap<Tuote, Integer>();
