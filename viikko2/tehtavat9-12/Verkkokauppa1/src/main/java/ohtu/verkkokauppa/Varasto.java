@@ -4,21 +4,24 @@ import java.util.*;
 
 public class Varasto implements VarastoRP {
 
-    private static Varasto instanssi;
-
-    public static Varasto getInstance() {
-        if (instanssi == null) {
-            instanssi = new Varasto();
-        }
-
-        return instanssi;
-    }
+// getInstance-metodi ja staattinen instance-muuttuja poistetaan:
+//    private static Varasto instanssi;
+//
+//    public static Varasto getInstance() {
+//        if (instanssi == null) {
+//            instanssi = new Varasto();
+//        }
+//
+//        return instanssi;
+//    }
     
-    private Kirjanpito kirjanpito;
+    //Muutetaan riippuvuus Kirjanpito-luokkaan riippuvuudeksi rajapintaan: 
+    private KirjanpitoRP kirjanpito;
     private HashMap<Tuote, Integer> saldot;  
     
-    private Varasto() {
-        kirjanpito = Kirjanpito.getInstance();
+    // private-konstruktori muutetaan julkiseksi, injektoidaaan kirjanpitorajapinta:    
+    public Varasto(KirjanpitoRP kirjanpito) {
+        this.kirjanpito = kirjanpito;
         saldot = new HashMap<Tuote, Integer>();
         alustaTuotteet();
     }

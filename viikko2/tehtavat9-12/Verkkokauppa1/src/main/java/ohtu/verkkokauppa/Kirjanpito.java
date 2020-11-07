@@ -4,19 +4,22 @@ package ohtu.verkkokauppa;
 import java.util.ArrayList;
 
 public class Kirjanpito implements KirjanpitoRP {
-    private static Kirjanpito instance;
-    
-    public static Kirjanpito getInstance() {
-        if ( instance==null) {
-            instance = new Kirjanpito();
-        }
-        
-        return instance;
-    }
+
+// getInstance-metodi ja staattinen instance-muuttuja poistetaan:
+//    private static Kirjanpito instance;
+//    
+//    public static Kirjanpito getInstance() {
+//        if ( instance==null) {
+//            instance = new Kirjanpito();
+//        }
+//        
+//        return instance;
+//    }
     
     private ArrayList<String> tapahtumat;
 
-    private Kirjanpito() {
+// private-konstruktori muutetaan julkiseksi:
+    public Kirjanpito() {
         tapahtumat = new ArrayList<String>();
     }
     

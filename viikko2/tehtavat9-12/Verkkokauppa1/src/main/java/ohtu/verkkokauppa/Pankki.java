@@ -2,19 +2,23 @@ package ohtu.verkkokauppa;
 
 public class Pankki implements PankkiRP {
 
-    private static Pankki instanssi;
+// getInstance-metodi ja staattinen instance-muuttuja poistetaan:
+//    private static Pankki instanssi;
+//
+//    public static Pankki getInstance() {
+//        if (instanssi == null) {
+//            instanssi = new Pankki();
+//        }
+//
+//        return instanssi;
+//    }
+    
+    //Muutetaan riippuvuus Kirjanpito-luokkaan riippuvuudeksi rajapintaan 
+    private KirjanpitoRP kirjanpito;
 
-    public static Pankki getInstance() {
-        if (instanssi == null) {
-            instanssi = new Pankki();
-        }
-
-        return instanssi;
-    }
-    private Kirjanpito kirjanpito;
-
-    public Pankki() {
-        kirjanpito = Kirjanpito.getInstance();
+    // injektoidaaan kirjanpitorajapinta:
+    public Pankki(KirjanpitoRP kirjanpito) {
+        this.kirjanpito = kirjanpito;
     }
 
     @Override
